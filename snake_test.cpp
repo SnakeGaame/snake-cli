@@ -1,31 +1,29 @@
 #include <gtest/gtest.h>
 #include "snake.h"
 
-
-TEST(SnakeBehaviour, NextHeadRight) {
-    pair<int, int> current = make_pair(rand() % 10, rand() % 10);
-    EXPECT_EQ(get_next_head(current, 'r'),make_pair(current.first,current.second+1));
-    
+TEST(SnakeGameTest, NextHeadRight) {
+    SnakeGame game(10);
+    auto current = std::make_pair(2, 2);
+    EXPECT_EQ(game.getNextHead(current, Direction::RIGHT), std::make_pair(2, 3));
 }
 
-
-TEST(SnakeBehaviour, NextHeadLeft) {
-  pair<int, int> current = make_pair(rand() % 10, rand() % 10);
-  EXPECT_EQ(get_next_head(current, 'l'),make_pair(current.first,current.second-1));
-  
+TEST(SnakeGameTest, NextHeadLeft) {
+    SnakeGame game(10);
+    auto current = std::make_pair(2, 2);
+    EXPECT_EQ(game.getNextHead(current, Direction::LEFT), std::make_pair(2, 1));
 }
 
-TEST(SnakeBehaviour, NextHeadUp) {
-  pair<int, int> current = make_pair(rand() % 10, rand() % 10);
-  EXPECT_EQ(get_next_head(current, 'u'),make_pair(current.first-1,current.second));
+TEST(SnakeGameTest, NextHeadUp) {
+    SnakeGame game(10);
+    auto current = std::make_pair(2, 2);
+    EXPECT_EQ(game.getNextHead(current, Direction::UP), std::make_pair(1, 2));
 }
 
-TEST(SnakeBehaviour, NextHeadDown) {
-  pair<int, int> current = make_pair(rand() % 10, rand() % 10);
-  EXPECT_EQ(get_next_head(current, 'd'),make_pair(current.first+1,current.second));
-  
+TEST(SnakeGameTest, NextHeadDown) {
+    SnakeGame game(10);
+    auto current = std::make_pair(2, 2);
+    EXPECT_EQ(game.getNextHead(current, Direction::DOWN), std::make_pair(3, 2));
 }
-
 
 /** 
  * g++ -o my_tests snake_test.cpp -lgtest -lgtest_main -pthread;
